@@ -14,7 +14,8 @@ pipeline {
   stages {
     stage('Cloning our Git') {
     		steps {
-    				git 'https://github.com/oabuoun/calculator.git'
+            git branch: 'main',
+            url: 'https://github.com/oabuoun/calculator.git'
     		}
     }
 
