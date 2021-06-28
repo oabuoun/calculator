@@ -13,7 +13,7 @@ class Calctests(unittest.TestCase):
         self.assertEqual(calc_functions.multiply(2, 4), 8)
 
     def test_divide(self):
-        self.assertEqual(calc_functions.divide(2, 4), 0.5)
+        self.assertEqual(calc_functions.divide(8, 4), 2)
 
 if __name__ == '__main__':
     unittest.main()
