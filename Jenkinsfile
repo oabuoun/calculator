@@ -27,7 +27,7 @@ pipeline {
       }
       steps {
           sh './build.sh'
-          stash(name: 'compiled-results', includes: 'sources/*.py*')
+          stash(name: 'compiled-results', includes: 'calculator/*.py*')
       }
     }
 
