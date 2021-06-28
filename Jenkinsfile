@@ -1,7 +1,7 @@
 pipeline {
   environment {
     registry = "oabuoun/web-calculator"
-    registryCredential = "dockerhub"
+    registryCredential = "docker_auth"
     dockerImage = ''
   }
 
