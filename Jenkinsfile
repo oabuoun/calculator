@@ -26,7 +26,7 @@ pipeline {
           }
       }
       steps {
-          sh 'python -m py_compile calculator/*'
+          sh './build.sh'
           stash(name: 'compiled-results', includes: 'sources/*.py*')
       }
     }
