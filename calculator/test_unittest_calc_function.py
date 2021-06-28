@@ -1,4 +1,4 @@
-import calculator.calc_functions as calc_functions
+import calc_functions as calc_functions
 import unittest
 
 class Calctests(unittest.TestCase):
@@ -14,3 +14,6 @@ class Calctests(unittest.TestCase):
 
     def test_divide(self):
         self.assertEqual(calc_functions.divide(2, 4), 0.5)
+
+if __name__ == '__main__':
+    unittest.main()
