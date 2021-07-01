@@ -1,5 +1,6 @@
 from flask import Flask, request, abort
 import calc_functions as calc_functions
+import db
 
 def read_number(number_id):
     number = input("Please Enter An Int Number {}: ".format(number_id))
@@ -29,8 +30,10 @@ def perform_add_query():
     if number1 is None or number2 is None:
         abort(400)
 
-    number3 = calc_functions.add(number1, number2)
-    return str(number3)
+    result = calc_functions.add(number1, number2)
+    db.log("add", number1, number2, result)
+
+    return str(result)
 
 @app.route('/subtract')
 def perform_subtract_query():
