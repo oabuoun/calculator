@@ -1,4 +1,4 @@
-cd /home/ec2-user/mysql
+cd /tmp/init-scripts
 
 docker-compose down
 docker-compose rm
