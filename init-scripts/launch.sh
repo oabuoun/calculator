@@ -2,7 +2,7 @@ chmod -R a+rwx /data/mysql/
 
 export MYSQL_USER=root
 export MYSQL_ROOT_PASSWORD=$(cat ../.mysql_password)
-docker-compose up
+docker-compose up -d
 
 while [ "$(docker exec mysql_dbms mysqladmin --user=$MYSQL_USER --password=$MYSQL_ROOT_PASSWORD ping --silent)" != "mysqld is alive" ] ;
 do
