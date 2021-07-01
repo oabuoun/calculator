@@ -12,7 +12,7 @@ done
 
 echo "MYSQL Server is ready"
 
-docker exec -it mysql_dbms service mysql restart
+docker exec -it mysql_dbms service mysql restart || true
 
 #docker exec -it mysql_dbms mysql --user=root --password=$MYSQL_ROOT_PASSWORD
 #docker exec -it mysql_dbms mysql --user=root --password=$MYSQL_ROOT_PASSWORD < path-to-file.sql
