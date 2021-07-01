@@ -76,6 +76,11 @@ resource "aws_instance" "oabu_web_server_instance_tf" {
     destination = "/tmp/init-scripts"
   }
 
+  provisioner "file" {
+    source = "../.mysql_password"
+    destination = "/tmp/.mysql_password"
+  }
+
   provisioner "remote-exec" {
     inline = [
       "chmod +x /tmp/init-scripts/docker_install.sh",
@@ -92,14 +97,14 @@ resource "aws_instance" "oabu_web_server_instance_tf" {
 
   provisioner "file" {
     source = "../init-sql"
-    destination = "/home/ec2-user/mysql"
+    destination = "/tmp"
   }
 
   provisioner "remote-exec" {
     when = destroy
     inline = [
-      "chmod +x /tmp/init-scripts/destroy.sh",
-      "/tmp/init-scripts/destroy.sh",
+      "chmod +x /tmp/init-scripts/stop.sh",
+      "/tmp/init-scripts/stop.sh",
     ]
   }
 
@@ -127,8 +132,9 @@ resource "aws_volume_attachment" "oabu_web_server_db_volume_attachment_tf" {
 
   provisioner "remote-exec" {
     inline = [
-      "chmod +x /tmp/init-scripts/launch.sh",
-      "/tmp/init-scripts/launch.sh",
+      "cd /tmp/init-scripts/",
+      "chmod +x launch.sh",
+      "./launch.sh",
     ]
   }
 }
