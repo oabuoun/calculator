@@ -42,16 +42,6 @@ resource "aws_security_group" "oabu_web_server_security_group_tf" {
   }
 }
 
-resource "aws_s3_bucket" "oabu_web_server_db_tf" {
-    bucket = "oabuwebserverdb"
-    acl = "private"
-
-    tags = {
-      Name = "Eng-88 Cyber - Oabu Web Server Bucket"
-      Environment = "Dev"
-    }
-}
-
 resource "aws_instance" "oabu_web_server_instance_tf" {
   ami                         = data.aws_ami.oabu_web_server_ami_linux.id //"ami-0f89681a05a3a9de7"
   instance_type               = "t2.micro"
