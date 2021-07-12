@@ -1,0 +1,83 @@
+<html>
+  <h1>Welcome to the Calculator App</h1>
+
+  <script  src="https://code.jquery.com/jquery-3.3.1.min.js"   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="   crossorigin="anonymous"></script>
+
+  <script type="text/javascript">
+    function logout(){
+      localStorage.removeItem("myToken")
+      localStorage.removeItem("myUsername")
+      document.location.href = "/"
+    }
+
+    token = "{{token}}"
+    if ((token != null) && (token != "")) {
+      localStorage.setItem("myUsername", "{{username}}")
+      localStorage.setItem("myToken", "{{token}}")
+    } else {
+      document.location.href = "/"
+    }
+  </script>
+  <body id= "body">
+    <form id= "opForm">
+
+      <label for="num1">Number 1</label>
+      <input type="text" id="num1" name="num1" value={{num1}}>
+      <br>
+
+      <select class="form-control" name="op" id="op">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+      </select>
+      <br>
+
+      <label for="num2">Number 2</label>
+      <input type="text" id="num2" name="num2" value={{num2}}><br>
+      <label for="Result">--{{result}}</label>
+
+      <br>
+      <br>
+
+      <input id = "btnSubmit" type="submit" value="Submit">
+      <input type="reset">
+    </form>
+    <script type="application/javascript">
+
+      $("#opForm").submit(function (e){
+        var myToken = "Bearer " + localStorage.getItem("myToken")
+        var action = "/op"
+
+        $.ajax({
+          type: "POST",
+          url: action,
+          processData: false,
+          dataType: 'json',
+          async: false,
+          headers: {
+            "Authorization": myToken
+          },
+          data: $("#opForm").serialize(),
+
+          success: function (response) {
+            alert(JSON.stringify(response))
+            $("#body").clear()
+            $("#body").html(response)
+          },
+          error: function (error) {
+            alert(JSON.stringify(error))
+          },
+          complete: function () {
+            // Handle the complete event
+          }
+        });
+        e.preventDefault() ;
+      }) ;
+
+    </script>
+
+    <hr>
+    <input id= "btnLogout" type="button" value="Log Out" onclick="logout()">
+  </body>
+</html>

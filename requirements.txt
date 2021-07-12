@@ -1,5 +1,7 @@
 attrs==21.2.0
+cffi==1.14.6
 click==8.0.1
+cryptography==3.4.7
 Flask==2.0.1
 iniconfig==1.1.1
 itsdangerous==2.0.1
@@ -10,6 +12,9 @@ packaging==20.9
 pluggy==0.13.1
 protobuf==3.17.3
 py==1.10.0
+pycparser==2.20
+PyJWT==2.1.0
+pyOpenSSL==20.0.1
 pyparsing==2.4.7
 pytest==6.2.4
 six==1.16.0

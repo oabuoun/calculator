@@ -1,28 +1,18 @@
 <html>
   <h1>Welcome to the Calculator App</h1>
+  <script type="text/javascript">
+
+    var myToken = localStorage.getItem("myToken")
+
+    if (myToken != null) {
+      document.location.href = "/dashboard"
+    }
+
+  </script>
   <body>
-    <form action = "/operation" method = "post">
-
-      <label for="num1">Number 1</label>
-      <input type="text" id="num1" name="num1" value={{num1}}>
-      <br>
-
-      <select class="form-control" name="op" id="op">
-        <option value="+">+</option>
-        <option value="-">-</option>
-        <option value="*">*</option>
-        <option value="/">/</option>
-      </select>
-      <br>
-
-      <label for="num2">Number 2</label>
-      <input type="text" id="num2" name="num2" value={{num2}}>
-
-      <br>
-      <br>
-
-      <input type="submit" value="Submit">
-      <input type="reset">
-    </form>
+    <a href="/login">Click to Login</a>
+    <br>
+    <br>
+    <a href="/signup">Click to Signup</a>
   </body>
 </html>

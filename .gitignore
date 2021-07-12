@@ -136,3 +136,6 @@ terraform.tfstate*
 
 # MySQL
 .mysql_password
+
+# Certs
+certs
