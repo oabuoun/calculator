@@ -1,15 +1,15 @@
 <html>
   <h1>Welcome to the Calculator App</h1>
+  <script  src="https://code.jquery.com/jquery-3.3.1.min.js"   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="   crossorigin="anonymous"></script>
   <script type="text/javascript">
 
     var myToken = localStorage.getItem("myToken")
-
-    if (myToken != null) {
-      document.location.href = "/dashboard"
+    if ((myToken != null) && (myToken != "")) {
+      document.location.href = "/login"
     }
 
   </script>
-  <body>
+  <body id="body">
     <a href="/login">Click to Login</a>
     <br>
     <br>

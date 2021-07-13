@@ -1,23 +1,24 @@
 <html>
-  <h1>Welcome to the Calculator App</h1>
 
   <script  src="https://code.jquery.com/jquery-3.3.1.min.js"   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="   crossorigin="anonymous"></script>
 
   <script type="text/javascript">
+    var myToken = localStorage.getItem("myToken")
+    var myUsername = localStorage.getItem("myUsername")
+
+    if ((myToken == null) || (myToken == "")) {
+      document.location.href = "/"
+    }
+
     function logout(){
       localStorage.removeItem("myToken")
       localStorage.removeItem("myUsername")
       document.location.href = "/"
     }
 
-    token = "{{token}}"
-    if ((token != null) && (token != "")) {
-      localStorage.setItem("myUsername", "{{username}}")
-      localStorage.setItem("myToken", "{{token}}")
-    } else {
-      document.location.href = "/"
-    }
   </script>
+
+  <h1>Welcome to the Calculator App - {{myUsername}} </h1>
   <body id= "body">
     <form id= "opForm">
 
@@ -34,8 +35,14 @@
       <br>
 
       <label for="num2">Number 2</label>
-      <input type="text" id="num2" name="num2" value={{num2}}><br>
-      <label for="Result">--{{result}}</label>
+      <input type="text" id="num2" name="num2" value={{num2}}>
+
+      <br>
+      <br>
+      <br>
+
+      <label>Result = </label>
+      <label id="lblResult" for="Result">{{result}}</label>
 
       <br>
       <br>
@@ -46,7 +53,7 @@
     <script type="application/javascript">
 
       $("#opForm").submit(function (e){
-        var myToken = "Bearer " + localStorage.getItem("myToken")
+
         var action = "/op"
 
         $.ajax({
@@ -56,14 +63,15 @@
           dataType: 'json',
           async: false,
           headers: {
-            "Authorization": myToken
+            "Authorization": "Bearer " + myToken
           },
           data: $("#opForm").serialize(),
 
           success: function (response) {
-            alert(JSON.stringify(response))
-            $("#body").clear()
-            $("#body").html(response)
+            //alert(JSON.stringify(response))
+            result = response.result
+            $("#lblResult").html('')
+            $("#lblResult").append(response.result);
           },
           error: function (error) {
             alert(JSON.stringify(error))

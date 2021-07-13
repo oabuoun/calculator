@@ -1,15 +1,75 @@
 <html>
-<h1>Welcome to the Calculator App</h1>
+  <h1>Welcome to the Calculator App</h1>
+  <script  src="https://code.jquery.com/jquery-3.3.1.min.js"   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="   crossorigin="anonymous"></script>
 
-<h2>Log in</h2>
-<form class="" action="/login" method="post">
-  <label for="username">Username</label>
-  <input type="text" id="username" name="username" value="{{username}}">
-  <label for="password">Password</label>
-  <input type="password" id="password" name="password" value="{{password}}">
+  <script type="text/javascript">
+    if (("{{token}}" != null) && ("{{token}}" != "")) {
+      localStorage.setItem("myUsername", "{{username}}")
+      localStorage.setItem("myToken", "{{token}}")
+    }
 
-  <input type="submit" value="Submit">
-  <input type="reset">
-</form>
+    var myToken = localStorage.getItem("myToken")
+    var myUsername = localStorage.getItem("myUsername")
 
+    if ((myToken != null) && (myToken != "")) {
+      document.location.href = "/dashboard?token=" + myToken
+      /*
+      $.ajax({
+        type: "GET",
+        url: "/dashboard",
+        processData: false,
+        dataType: 'json',
+        async: false,
+        headers: {
+          "Authorization": "Bearer " + myToken
+        },
+        success: function (response) {
+          //alert(JSON.stringify(response))
+          document.open();
+          document.write(response);
+          document.close();
+        },
+        error: function (error) {
+          alert(JSON.stringify(error))
+        },
+        complete: function () {
+          // Handle the complete event
+        }
+      });
+      */
+
+      /*
+      //document.location.href = "/dashboard?token=" + myToken
+      alert("#1")
+      var xmlhttp = new XMLHttpRequest();
+      xmlhttp.onreadystatechange = function() { // listen for state changes
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) { // when completed we can move away
+          window.location = "dashboard";
+        }
+      }
+      xmlhttp.open("GET","/dashboard",true);
+      //xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+      alert("#2")
+      xmlhttp.setRequestHeader("Authorization",myToken);
+      alert("#3")
+      xmlhttp.send();
+      alert("#4")
+      */
+    }
+
+  </script>
+  <body>
+
+    <h2>Log in</h2>
+    <form class="" action="/login" method="post">
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" value="{{username}}">
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" value="{{password}}">
+
+      <input type="submit" value="Submit">
+      <input type="reset">
+    </form>
+
+  </body>
 <html/>
