@@ -68,7 +68,6 @@
           data: $("#opForm").serialize(),
 
           success: function (response) {
-            //alert(JSON.stringify(response))
             result = response.result
             $("#lblResult").html('')
             $("#lblResult").append(response.result);

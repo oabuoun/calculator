@@ -13,48 +13,6 @@
 
     if ((myToken != null) && (myToken != "")) {
       document.location.href = "/dashboard?token=" + myToken
-      /*
-      $.ajax({
-        type: "GET",
-        url: "/dashboard",
-        processData: false,
-        dataType: 'json',
-        async: false,
-        headers: {
-          "Authorization": "Bearer " + myToken
-        },
-        success: function (response) {
-          //alert(JSON.stringify(response))
-          document.open();
-          document.write(response);
-          document.close();
-        },
-        error: function (error) {
-          alert(JSON.stringify(error))
-        },
-        complete: function () {
-          // Handle the complete event
-        }
-      });
-      */
-
-      /*
-      //document.location.href = "/dashboard?token=" + myToken
-      alert("#1")
-      var xmlhttp = new XMLHttpRequest();
-      xmlhttp.onreadystatechange = function() { // listen for state changes
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) { // when completed we can move away
-          window.location = "dashboard";
-        }
-      }
-      xmlhttp.open("GET","/dashboard",true);
-      //xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-      alert("#2")
-      xmlhttp.setRequestHeader("Authorization",myToken);
-      alert("#3")
-      xmlhttp.send();
-      alert("#4")
-      */
     }
 
   </script>
