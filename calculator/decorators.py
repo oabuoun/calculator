@@ -38,6 +38,7 @@ def token_required(f):
 			expiry_date = datetime.strptime(data['expiry'], '%Y-%m-%d %H:%M:%S.%f')
 			if datetime.utcnow() > expiry_date:
 				print("Token is expired")
+				raise
 
 			# check decoded data and find the current_user
 
