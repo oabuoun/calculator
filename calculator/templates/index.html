@@ -1,11 +1,37 @@
-<html>
+<html id="page">
   <h1>Welcome to the Calculator App</h1>
   <script  src="https://code.jquery.com/jquery-3.3.1.min.js"   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="   crossorigin="anonymous"></script>
   <script type="text/javascript">
 
     var myToken = localStorage.getItem("myToken")
     if ((myToken != null) && (myToken != "")) {
-      document.location.href = "/login"
+      //document.location.href = "/login"
+			$.ajax({
+				type: "GET",
+				url: "/dashboard",
+				processData: false,
+				dataType: 'json',
+				async: false,
+				headers: {
+					"Authorization": "Bearer " + myToken
+				},
+				//data: $("#opForm").serialize(),
+
+				success: function (response) {
+					//location.href = "/dashboard"
+					alert("Success")
+					//alert(JSON.stringify(response))
+					$("#page").html('')
+					$("#page").append(response);
+				},
+				error: function (error) {
+					alert(JSON.stringify(error))
+				},
+				complete: function () {
+					// Handle the complete event
+				}
+			});
+
     }
 
   </script>

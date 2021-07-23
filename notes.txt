@@ -1,0 +1,2 @@
+# To solve setup_tools problem
+pip install --upgrade pip

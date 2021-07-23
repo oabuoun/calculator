@@ -1,4 +1,4 @@
-from flask import request, jsonify, make_response, render_template, Blueprint
+from flask import request, jsonify, make_response, render_template, Blueprint, redirect
 from functools import wraps
 
 # imports for PyJWT authentication
@@ -24,7 +24,8 @@ def token_required(f):
 
 		# return 401 if token is not passed
 		if not token:
-			return jsonify({'message' : 'Token is missing !!'}), 401
+			#return jsonify({'message' : 'Token is missing !!'}), 401
+			return redirect("/")
 
 		try:
 			# decoding the payload to fetch the stored details

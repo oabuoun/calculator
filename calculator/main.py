@@ -46,7 +46,7 @@ def attempt_login():
 @decorators.token_required
 def dashboard(username):
 	headers = {'Content-Type': 'text/html'}
-	return make_response(render_template('dashboard.html'), 200, headers)
+	return make_response(jsonify(render_template('dashboard.html')), 200, headers)
 
 # URL: 127.0.0.1:5000/add/1/2
 @app.route('/op', methods=['POST'])
