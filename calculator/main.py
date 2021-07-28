@@ -40,13 +40,22 @@ def attempt_login():
 		'expiry': nowTime
 	}, 'SECRET_KEY_123456798', algorithm= 'HS256')
 
-	return render_template('login.html', username = username, token = token)
+	response = make_response(render_template('login.html', username = username, token = token))
+	response.set_cookie('access_token', token)
+	return response
 
 @app.route('/dashboard', methods=['GET'])
 @decorators.token_required
-def dashboard(username):
+def test(username):
 	headers = {'Content-Type': 'text/html'}
 	return make_response(jsonify(render_template('dashboard.html')), 200, headers)
+
+@app.route('/test', methods=['GET'])
+@decorators.token_required
+def dashboard(username):
+	test_id = request.args.get("id")
+	headers = {'Content-Type': 'text/html'}
+	return make_response(jsonify(render_template('test.html', id = test_id)), 200, headers)
 
 # URL: 127.0.0.1:5000/add/1/2
 @app.route('/op', methods=['POST'])

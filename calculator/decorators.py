@@ -15,7 +15,10 @@ def token_required(f):
 		# jwt is passed in the request header
 		print(request.headers)
 
-		if 'Authorization' in request.headers:
+
+		if request.cookies.get('access_token'):
+			token = request.cookies.get('access_token')
+		elif 'Authorization' in request.headers:
 			token = request.headers['Authorization']
 		elif request.args.get('token', type=str) != "":
 			token = request.args.get('token', type=str)

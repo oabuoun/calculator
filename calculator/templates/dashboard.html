@@ -83,8 +83,18 @@
       }) ;
 
     </script>
-
     <hr>
     <input id= "btnLogout" type="button" value="Log Out" onclick="logout()">
+
+		<div id="demo"></div>
+		<script>
+				var links ="", i;
+				for (i=1; i<=50; i++) {
+					var link = `<a href=test?id=${i} id=${i}>A link to ${i}</a><br>` + "\n"
+				  links = links + link
+				}
+				document.getElementById("demo").innerHTML = links;
+		</script>
+
   </body>
 </html>
